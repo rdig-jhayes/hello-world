@@ -2,6 +2,7 @@ class Game:
     def __init__(self):
         self.health = 100
         self.inventory = []
+        self.can_fly = False
 
     def start(self):
         print("Welcome to the Adventure Game!")
@@ -10,11 +11,13 @@ class Game:
 
     def first_choice(self):
         print("You find yourself at a crossroads. Do you want to go left or right?")
-        choice = input("Type 'left' or 'right': ").strip().lower()
+        choice = input("Type 'left', 'right', or 'fly': ").strip().lower()
         if choice == 'left':
             self.left_path()
         elif choice == 'right':
             self.right_path()
+        elif choice == 'fly':
+            self.fly_to_end()
         else:
             print("Invalid choice. Please try again.")
             self.first_choice()
@@ -22,11 +25,13 @@ class Game:
     def left_path(self):
         print("\nYou walk down the left path and encounter a wild animal!")
         print("Do you want to fight or run?")
-        choice = input("Type 'fight' or 'run': ").strip().lower()
+        choice = input("Type 'fight', 'run', or 'fly': ").strip().lower()
         if choice == 'fight':
             self.fight_animal()
         elif choice == 'run':
             self.run_away()
+        elif choice == 'fly':
+            self.fly_to_end()
         else:
             print("Invalid choice. Please try again.")
             self.left_path()
@@ -34,11 +39,13 @@ class Game:
     def right_path(self):
         print("\nYou walk down the right path and find a treasure chest!")
         print("Do you want to open it or leave it?")
-        choice = input("Type 'open' or 'leave': ").strip().lower()
+        choice = input("Type 'open', 'leave', or 'fly': ").strip().lower()
         if choice == 'open':
             self.open_chest()
         elif choice == 'leave':
             self.leave_chest()
+        elif choice == 'fly':
+            self.fly_to_end()
         else:
             print("Invalid choice. Please try again.")
             self.right_path()
@@ -72,6 +79,10 @@ class Game:
         else:
             print("\nYou have no health left. Game over!")
             self.end_game()
+
+    def fly_to_end(self):
+        print("\nYou have chosen to fly to the end of the game!")
+        self.end_game()
 
     def end_game(self):
         print("Thank you for playing the Adventure Game!")
